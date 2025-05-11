@@ -1,15 +1,13 @@
 class Solution {
     fun twoSum(nums: IntArray, target: Int): IntArray {
-        val myList = mutableListOf<Int>()
-        for (index1 in nums.indices) {
-            for (index2 in index1 + 1 until nums.size) {
-                if (nums[index1] + nums[index2] == target) {
-                    myList.add(index1)
-                    myList.add(index2)
-                    break
-                }
+        val map= mutableMapOf<Int,Int>()
+        for (i in nums.indices){
+            val complement= target - nums[i]
+            if(map.containsKey(complement)){
+                return intArrayOf(map[complement]!!,i)
             }
+            map[nums[i]]=i
         }
-        return myList.toIntArray()
+        return intArrayOf(-1,-1)
     }
 }
